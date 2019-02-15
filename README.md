@@ -3,12 +3,12 @@ Outputs list for word search, and traces back affixes for found roots
 
 ## Note
 * I called this program a stemmer, but it is really a partial lemmatizer.  What's the difference?
-* A stemmer is a quick, computationally inexpensive way of hashing several different forms of a word to a single string.  For example, 'convinces','convinced' and 'convincing' all return 'convinc'.  Though 'convinc' is not a real word, it does serve to join the various forms together. This is enough for a lot of purposes, and there are plenty of implementations of the Porter stemmer available.
-* A lemmatizer goes a little more in depth, trying to reconstruct a real word and also trying to sort through irregular forms like 'run' and 'ran'.  
+* A stemmer is a quick, computationally inexpensive way of hashing several different forms of a word to a single string.  For example, a stemmer would return 'convinc' for each input 'convinces','convinced' and 'convincing'.  Though 'convinc' is not a real word, it does serve to join the various forms together. This is enough for a lot of purposes, and there are plenty of implementations of the Porter stemmer available.
+* A lemmatizer goes a little more in depth, trying to reconstruct a real word and also sorting through irregular forms like 'run' and 'ran'.  
 * Since this program tries to return real words, it works toward the latter task.
 
 ## Overview
-* Trying to strip the prefixes and suffixes from a word to find its root is difficult for a computer.  Natural language is not context free, and for every rule there is an exception.  There are even exceptions for which there are no rules.  
+* Stripping the prefixes and suffixes from a word and reconstructing its root is difficult for a computer.  Natural language is not context free, and for every rule there is an exception.  There are even exceptions for which there are no rules.  
 
 * In light of this, a good first step is output a short list of candidate words.  You then feed the output into another program that can reference a list of known root words.  When you find a candidate word that is a root word, you call the lemmatizer's traceback function to get a list of the prefixes and suffixes were stripped off to make that word.  Put it all together and you have a valid breakdown of the word, so you're a step closer to finding its semantic meaning.
 
